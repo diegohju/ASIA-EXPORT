@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+  --fg: #0F1318;
+  --ink: #0F1318;
+  --ink2: #1A2029;
+  --paper: #FAF9F6;
+  --line: #E4E2DC;
+  --mute: #5E6670;
+  --amber: #FFB000;
+  --cream: #FDFBA0;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root[data-theme="dark"],
+.dark {
+  --fg: #ECEBE6;
+  --paper: #12161C;
+  --line: #2A313B;
+  --mute: #9AA3AD;
+  --ink2: #0B0E13;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--fg);
+  background-color: var(--paper);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6, summary {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Drifting grid background in Hero */
+.hero-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: dr 14s linear infinite;
+}
+
+@keyframes dr {
+  to {
+    background-position: 80px 80px;
+  }
+}
+
+/* Word reveal animation in hero */
+.wd {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.wd i {
+  display: inline-block;
+  font-style: normal;
+  transform: translateY(110%);
+  animation: up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes up {
+  to {
+    transform: none;
+  }
+}
+
+/* Amber Marquee */
+.mq-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: mq 42s linear infinite;
+}
+@keyframes mq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Shimmer on button */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s;
+}
+.btn-shimmer:hover::after {
+  transform: translateX(120%);
+}
+
+/* Animated SVG Illustrations: Cargo Ship, Crane, Legal Growth */
+.il * {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.il .a {
+  stroke: var(--amber);
+}
+.il .bar {
+  fill: var(--amber);
+  stroke: none;
+  opacity: 0.85;
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: gr 3s ease-in-out infinite alternate;
+}
+
+.bob {
+  animation: bob 4s ease-in-out infinite;
+}
+.wv {
+  animation: wv 5s linear infinite;
+}
+.wv.w2 {
+  animation-duration: 8s;
+  opacity: 0.6;
+}
+.sw {
+  transform-origin: 270px 60px;
+  animation: sw 4s ease-in-out infinite alternate;
+}
+.dr {
+  stroke-dasharray: 140;
+  animation: dsh 3.5s ease-in-out infinite alternate;
+}
+.spin {
+  animation: sp 10s linear infinite;
+}
+.pulse {
+  transform-origin: 60px 60px;
+  animation: pu 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes wv {
+  to {
+    transform: translateX(100px);
+  }
+}
+@keyframes sw {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+@keyframes gr {
+  from {
+    transform: scaleY(0.4);
+  }
+}
+@keyframes dsh {
+  from {
+    stroke-dashoffset: 140;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes sp {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pu {
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+/* Product Icon Badge .pi */
+.pi {
+  width: 84px;
+  height: 84px;
+  display: block;
+  margin-bottom: 18px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 30% 18%, #323a49, #12161c);
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.7);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.group:hover .pi,
+div:hover > .pi {
+  transform: translateY(-5px) rotate(-4deg) scale(1.05);
+}
+
+/* Details FAQ styling */
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::after {
+  content: "+";
+  float: right;
+  color: var(--amber);
+  font-weight: 300;
+  font-size: 1.4rem;
+}
+details[open] summary::after {
+  content: "–";
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-grid,
+  .bob,
+  .wv,
+  .sw,
+  .dr,
+  .spin,
+  .pulse,
+  .bar,
+  .mq-track {
+    animation: none !important;
+  }
+  .wd i {
+    transform: none !important;
+    animation: none !important;
+  }
+}

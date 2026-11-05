@@ -1,0 +1,8 @@
+{
+  "name": "Asia Export | Comercio Exterior Chile–China",
+  "description": "Portal corporativo de comercio exterior, importación, exportación y asesoría integral de negocios entre Chile y China. Parte de Holding Sarrazin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
